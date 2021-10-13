@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Title from "./components/Title/Title";
+import Input from "./components/Input/Input";
+import Task from "./components/Task/Task";
+import { useState } from "react";
+import { nanoid } from "nanoid";
+import { StyledApp } from "./App.styles";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const addTask = (userInput) => {
+    if (userInput) {
+      const newItem = {
+        id: nanoid(),
+        text: userInput,
+        done: false,
+      };
+      setTodos([...todos, newItem]);
+    }
+  };
+
+  const removeTask = (id) => {
+    setTodos([...todos.filter((todo) => todo.id !== id)]);
+  };
+
+  const toggleDoneTask = (id) => {
+    setTodos([
+      ...todos.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : { ...todo }
+      ),
+    ]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledApp>
+      <Title />
+      <Input addTask={addTask} />
+      {todos.map((todo) => {
+        return (
+          <Task
+            const
+            id={nanoid()}
+            todo={todo}
+            toggleDoneTask={toggleDoneTask}
+            removeTask={removeTask}
+          />
+        );
+      })}
+    </StyledApp>
   );
 }
 
