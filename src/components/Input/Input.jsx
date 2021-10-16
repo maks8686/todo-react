@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Input = ({ addTask }) => {
+export const Input = ({ addTask }) => {
   const [userInput, setUserInput] = useState("");
 
   const handleSubmit = (e) => {
@@ -28,7 +28,7 @@ const Input = ({ addTask }) => {
         onKeyDown={onKeyPress}
         placeholder="Введи задачу"
       />
+      <button onClick={handleSubmit}>+</button>
     </div>
   );
 };
-export default Input;

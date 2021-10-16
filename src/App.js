@@ -6,7 +6,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import { StyledApp } from "./App.styles";
 
-function App() {
+export function App() {
   const [todos, setTodos] = useState([]);
 
   const addTask = (userInput) => {
@@ -39,7 +39,7 @@ function App() {
     <StyledApp>
       <Title />
       <Input addTask={addTask} />
-      {[...activeTaskArr,...doneTaskArr].map((todo) => {
+      {[...activeTaskArr, ...doneTaskArr].map((todo) => {
         return (
           <Task
             key={todo.id}
@@ -52,5 +52,3 @@ function App() {
     </StyledApp>
   );
 }
-
-export default App;

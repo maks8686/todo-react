@@ -4,7 +4,7 @@ import {
   StyledText,
   StyledData,
   StyledDivTask,
-} from "./task.styles";
+} from "./Task.styles";
 
 function Task({ todo, toggleDoneTask, removeTask }) {
   return (
