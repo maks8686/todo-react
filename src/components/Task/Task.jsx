@@ -1,15 +1,27 @@
-import { TaskWrapper, StyledRemoveBtn, StyledText } from "./task.styles";
+import {
+  TaskWrapper,
+  StyledRemoveBtn,
+  StyledText,
+  StyledData,
+  StyledDivTask,
+} from "./task.styles";
 
 function Task({ todo, toggleDoneTask, removeTask }) {
   return (
-    <TaskWrapper key={todo.id}>
-      <StyledText done={todo.done} onClick={() => toggleDoneTask(todo.id)}>
-        {todo.text}
-      </StyledText>
-      <div>
-        <StyledRemoveBtn onClick={() => removeTask(todo.id)}>X</StyledRemoveBtn>
-      </div>
-    </TaskWrapper>
+    <StyledDivTask>
+      <TaskWrapper key={todo.id}>
+        <StyledText done={todo.done} onClick={() => toggleDoneTask(todo.id)}>
+          {todo.text}
+        </StyledText>
+
+        <div>
+          <StyledRemoveBtn onClick={() => removeTask(todo.id)}>
+            X
+          </StyledRemoveBtn>
+        </div>
+      </TaskWrapper>
+      <StyledData> {todo.date}</StyledData>
+    </StyledDivTask>
   );
 }
 export default Task;

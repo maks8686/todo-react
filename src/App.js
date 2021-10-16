@@ -15,6 +15,7 @@ function App() {
         id: nanoid(),
         text: userInput,
         done: false,
+        date: new Date(Date.now()).toLocaleString("en-GB"),
       };
       setTodos([...todos, newItem]);
     }
@@ -23,6 +24,9 @@ function App() {
   const removeTask = (id) => {
     setTodos([...todos.filter((todo) => todo.id !== id)]);
   };
+
+  const doneTaskArr = [...todos.filter((todo) => todo.done)];
+  const activeTaskArr = [...todos.filter((todo) => !todo.done)];
 
   const toggleDoneTask = (id) => {
     setTodos([
@@ -35,11 +39,10 @@ function App() {
     <StyledApp>
       <Title />
       <Input addTask={addTask} />
-      {todos.map((todo) => {
+      {[...activeTaskArr,...doneTaskArr].map((todo) => {
         return (
           <Task
-            const
-            id={nanoid()}
+            key={todo.id}
             todo={todo}
             toggleDoneTask={toggleDoneTask}
             removeTask={removeTask}
